@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 4</title>
+    <style>
+      body {
+        background-color: lightgray;
+        font-size: 20px;
+        font-family: 'Times New Roman', Times, serif;
+      }
+      .header {
+        max-width: 1425px;
+        margin: 0 auto;
+        background-color: rgb(31, 199, 131);
+        padding: 20px;
+        text-align: center;
+        border-radius: 10px;
+        font-size: 30px;
+      }
+      .header > p {
+        font-size: 24px;
+      }
+      .content {
+        max-width: 950px;
+        margin: 10px auto;
+        background-color: rgb(31, 199, 131);
+        border-radius: 10px;
+        text-align: center;
+        padding: 5px 0;
+        font-size: 24px;
+      }
+
+      .btn {
+        max-width: 300px;
+        margin: 30px auto;
+      }
+      .button {
+        display: block;
+        text-decoration: none;
+        color: black;
+        background-color: rgb(31, 199, 131);
+        margin: 15px 25px;
+        text-align: center;
+        font-size: 22px;
+        padding: 10px 20px;
+        border-radius: 7px;
+      }
+      .button:hover {
+        background-color: rgb(63, 112, 210);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div>Задача 4</div>
+      <p>
+        Для розглянутих методів сортування спробувати вивести етапи сортування
+        шляхом виведення відповідних таблиць.
+      </p>
+    </div>
+    <div class="content">
+      <p>Відповідь до задачі:</p>
+      <script>
+        function createRandomArr() {
+          let arr = []
+          for (let i = 0; i < 5; i++) {
+            let randomElem = 1 + Math.floor(Math.random() * 5)
+            arr.push(randomElem)
+          }
+          return arr
+        }
+        let arr = createRandomArr()
+        document.write(`Згенерований масив <br> ${arr} <br><br>`)
+
+        //-------------------------------------------------
+
+        document.write(`Сортування бульбашкою <br>`)
+        let arrBubble = [...arr]
+        let change
+
+        do {
+          change = false
+          for (let i = 1; i < arrBubble.length; i++) {
+            if (arrBubble[i - 1] > arrBubble[i]) {
+              let el = arrBubble[i - 1]
+              arrBubble[i - 1] = arrBubble[i]
+              arrBubble[i] = el
+              change = true
+              document.write(`${arrBubble} <br>`)
+            }
+          }
+        } while (change)
+
+        //-------------------------------------------------
+
+        document.write(`Сортування змішуванням <br>`)
+        const swap = (arr, i, k) => {
+          const elem = arr[i]
+          arr[i] = arr[k]
+          arr[k] = elem
+        }
+
+        let arrShake = [...arr]
+        let startIndex = 0
+        let endIndex = arrShake.length - 1
+
+        let changeShake
+
+        while (startIndex < endIndex) {
+          changeShake = false
+          for (let i = startIndex; i < endIndex; i++) {
+            if (arrShake[i] > arrShake[i + 1]) {
+              swap(arrShake, i, i + 1)
+              changeShake = true
+              document.write(`${arrShake} <br>`)
+            }
+          }
+          if (changeShake === false) break
+          endIndex--
+
+          changeShake = false
+          for (let i = endIndex; i > startIndex; i--) {
+            if (arrShake[i] < arrShake[i - 1]) {
+              swap(arrShake, i, i - 1)
+              changeShake = true
+              document.write(`${arrShake} <br>`)
+            }
+          }
+
+          if (changeShake === false) break
+          startIndex++
+        }
+
+        //-------------------------------------------------
+
+        /*Цей приклад так і не вийшло зробити, щоб нормально працював( */
+
+        document.write(`Сортування включенням <br>`)
+        let arrInsert = [...arr]
+
+        function insertSort(arrInsert) {
+          for (let k = 1; k < arrInsert.length; k++) {
+            let currentElem = arrInsert[k]
+            let i = k - 1
+            while (i >= 0 && arrInsert[i] > currentElem) {
+              arrInsert[i + 1] = arrInsert[i]
+              i = i - 1
+            }
+            arrInsert[i + 1] = currentElem
+            document.write(`${arrInsert}<br>`)
+          }
+        }
+        insertSort(arrInsert)
+      </script>
+    </div>
+    <div class="btn">
+      <a class="button" href="./index.html">На головну</a>
+    </div>
+  </body>
+</html>

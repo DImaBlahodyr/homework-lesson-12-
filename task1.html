@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 1</title>
+    <style>
+      body {
+        background-color: lightgray;
+        font-size: 20px;
+        font-family: 'Times New Roman', Times, serif;
+      }
+      .header {
+        max-width: 1425px;
+        margin: 0 auto;
+        background-color: rgb(31, 199, 131);
+        padding: 20px;
+        text-align: center;
+        border-radius: 10px;
+        font-size: 30px;
+      }
+      .header > p {
+        font-size: 24px;
+      }
+      .content {
+        max-width: 950px;
+        margin: 10px auto;
+        background-color: rgb(31, 199, 131);
+        border-radius: 10px;
+        text-align: center;
+        padding: 5px 0;
+        font-size: 24px;
+      }
+
+      .btn {
+        max-width: 300px;
+        margin: 30px auto;
+      }
+      .button {
+        display: block;
+        text-decoration: none;
+        color: black;
+        background-color: rgb(31, 199, 131);
+        margin: 15px 25px;
+        text-align: center;
+        font-size: 22px;
+        padding: 10px 20px;
+        border-radius: 7px;
+      }
+      .button:hover {
+        background-color: rgb(63, 112, 210);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div>Задача 1</div>
+      <p>
+        Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів
+        під час сортування бульбашкою
+      </p>
+    </div>
+    <div class="content">
+      <p>Відповідь до задачі:</p>
+      <script>
+        function createRandomArr() {
+          let arr = []
+          for (let i = 0; i < 30; i++) {
+            let randomElem = 1 + Math.floor(Math.random() * 100)
+            arr.push(randomElem)
+          }
+          return arr
+        }
+        let arr = createRandomArr()
+        document.write(`Згенерований масив<br> ${arr} <br><br>`)
+
+        let arrBubble = [...arr]
+        let change
+        let counter = 0
+        do {
+          change = false
+          for (let i = 1; i < arrBubble.length; i++) {
+            if (arrBubble[i - 1] > arrBubble[i]) {
+              let el = arrBubble[i - 1]
+              arrBubble[i - 1] = arrBubble[i]
+              arrBubble[i] = el
+              change = true
+              counter++
+            }
+          }
+        } while (change)
+        document.write(`Упорядкований масив<br> ${arrBubble} <br>`)
+        document.write(`Кількість обмінів: ${counter} <br><br>`)
+      </script>
+    </div>
+    <div class="btn">
+      <a class="button" href="./index.html">На головну</a>
+    </div>
+  </body>
+</html>

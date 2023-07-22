@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 5</title>
+    <style>
+      body {
+        background-color: lightgray;
+        font-size: 20px;
+        font-family: 'Times New Roman', Times, serif;
+      }
+      .header {
+        max-width: 1425px;
+        margin: 0 auto;
+        background-color: rgb(31, 199, 131);
+        padding: 20px;
+        text-align: center;
+        border-radius: 10px;
+        font-size: 30px;
+      }
+      .header > p {
+        font-size: 24px;
+      }
+      .content {
+        max-width: 950px;
+        margin: 10px auto;
+        background-color: rgb(31, 199, 131);
+        border-radius: 10px;
+        text-align: center;
+        padding: 5px 0;
+        font-size: 24px;
+      }
+
+      .btn {
+        max-width: 300px;
+        margin: 30px auto;
+      }
+      .button {
+        display: block;
+        text-decoration: none;
+        color: black;
+        background-color: rgb(31, 199, 131);
+        margin: 15px 25px;
+        text-align: center;
+        font-size: 22px;
+        padding: 10px 20px;
+        border-radius: 7px;
+      }
+      .button:hover {
+        background-color: rgb(63, 112, 210);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div>Задача 5</div>
+      <p>
+        Дано масив імен. Застосовуючи відповідне сортування та бінарний пошук
+        визначити, чи є у масиві ім’я «Olga» і під яким індексом.
+      </p>
+    </div>
+    <div class="content">
+      <p>Відповідь до задачі:</p>
+      <script>
+        let arrNames = [
+          'Dima',
+          'Ihor',
+          'Anna',
+          'Yuriy',
+          'Olga',
+          'Andriy',
+          'Yehor',
+          'Anatoliy',
+          'Inna',
+        ]
+        document.write(`${arrNames} <br> <br>`)
+
+        arrNames.sort()
+
+        document.write(`${arrNames} <br><br>`)
+
+        function searchElement(arrNames, element) {
+          startIndex = 0
+          endIndex = arrNames.length - 1
+          while (startIndex <= endIndex) {
+            let middleValue = Math.floor((startIndex + endIndex) / 2)
+            if (arrNames[middleValue] === element) return middleValue
+            if (arrNames[middleValue] < element) startIndex = middleValue + 1
+            if (arrNames[middleValue] > element) endIndex = middleValue - 1
+          }
+          return false
+        }
+        let indexElement = searchElement(arrNames, 'Olga')
+        if (indexElement !== false) {
+          document.write(`Ім'я 'Olga' є у масиві під індексом ${indexElement}`)
+        } else document.write(`Імені 'Olga' немає у масиві`)
+      </script>
+    </div>
+    <div class="btn">
+      <a class="button" href="./index.html">На головну</a>
+    </div>
+  </body>
+</html>
